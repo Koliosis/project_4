@@ -50,6 +50,22 @@ const characters = [
 ]
 
 
+let visable = false;
+let handle = 0;
+function toggle() {
+    visable = !visable;
+    if (visable) {
+        btn.textContent = "Hide answer";
+        aDiv.setAttribute('class', 'shown');
+        handle = setTimeout(toggle, 5000);
+    } else {
+        btn.textContent = "Show answer"
+        aDiv.setAttribute('class', 'hidden')
+        clearTimeout(handle);
+    }
+}
+
+
 function createItems(n, r, c, g) {
     // create section
     const section = document.createElement("section");
@@ -64,6 +80,13 @@ function createItems(n, r, c, g) {
     charItems.textContent = `Name: ${n}, Race: ${r}, Class: ${c}, Gender: ${g}`;
     return section;
 }
+
+
+// create a button
+const btn = document.createElement('button');
+btn.textContent = 'Hide Stuff'
+btn.addEventListener('click', toggle);
+section.appendChild(btn);
 
 
 const charactersDiv = document.querySelector('div#exampleCharacters')
