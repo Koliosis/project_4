@@ -50,20 +50,7 @@ const characters = [
 ]
 
 
-let visable = false;
-let handle = 0;
-function toggle() {
-    visable = !visable;
-    if (visable) {
-        btn.textContent = "Hide answer";
-        aDiv.setAttribute('class', 'shown');
-        handle = setTimeout(toggle, 5000);
-    } else {
-        btn.textContent = "Show answer"
-        aDiv.setAttribute('class', 'hidden')
-        clearTimeout(handle);
-    }
-}
+
 
 
 function createItems(n, r, c, g) {
@@ -83,15 +70,37 @@ function createItems(n, r, c, g) {
 
 
 // create a button
-const btn = document.createElement('button');
-btn.textContent = 'Hide Stuff'
-btn.addEventListener('click', toggle);
-section.appendChild(btn);
-
-
-const charactersDiv = document.querySelector('div#exampleCharacters')
-
-for (char of characters) {
-    const section = createItems(char.name, char.race, char.class, char.gender);
-    charactersDiv.appendChild(section);
+function initialize() {
+    console.log("hello");
+    const charactersDiv = document.querySelector('div#exampleCharacters')
+    const btn = document.createElement('button');
+    btn.textContent = 'Hide Stuff'
+    btn.addEventListener('click', toggle(btn));
+    charactersDiv.appendChild(btn);
+    for (char of characters) {
+        const section = createItems(char.name, char.race, char.class, char.gender);
+        charactersDiv.appendChild(section);
+    }
 }
+
+
+
+let visable = true;
+let handle = 0;
+function toggle(b) {
+    visable = !visable;
+    if (visable) {
+        b.textContent = "Hide answer";
+        const charactersDiv = document.querySelector('div#exampleCharacters')  
+        aDiv.setAttribute('class', 'shown');
+        handle = setTimeout(toggle, 5000);
+    } else {
+        b.textContent = "Show answer"
+        aDiv.setAttribute('class', 'hidden')
+        clearTimeout(handle);
+    }
+}
+
+
+
+
