@@ -49,13 +49,19 @@ const characters = [
     }
 ]
 
-function showCharacters(n, r, c, g) {
+
+function createItems(n, r, c, g) {
     // create section
     const section = document.createElement("section");
-    // create div to house list of characters
-    const mainDiv = document.createElement('div');
-    section.appendChild(mainDiv)
-    mainDiv.textContent = `Name: ${n}, Race: ${r}, Class: ${c}, Gender: ${g}`;
+    //create div to house list of characters
+    const div = document.createElement("div");
+    div.setAttribute("class", "grid-container")
+    section.appendChild(div);
+    // create grid items to house each item
+    const charItems = document.createElement('item');
+    charItems.setAttribute("class", "grid-item")
+    div.appendChild(charItems)
+    charItems.textContent = `Name: ${n}, Race: ${r}, Class: ${c}, Gender: ${g}`;
     return section;
 }
 
@@ -63,6 +69,6 @@ function showCharacters(n, r, c, g) {
 const charactersDiv = document.querySelector('div#exampleCharacters')
 
 for (char of characters) {
-    const section = showCharacters(char.name, char.race, char.class, char.gender);
+    const section = createItems(char.name, char.race, char.class, char.gender);
     charactersDiv.appendChild(section);
 }
