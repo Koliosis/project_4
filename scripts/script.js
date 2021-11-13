@@ -54,14 +54,14 @@ const characters = [
 
 
 function createItems(n, r, c, g) {
+    // change this whole thing to use tables.
     // create section
     const section = document.createElement("section");
     //create div to house list of characters
     const div = document.createElement("div");
-    div.setAttribute("class", "grid-container")
     section.appendChild(div);
-    // create grid items to house each item
-    const charItems = document.createElement('item');
+    // create table to house characters
+    const charItems = document.createElement('table');
     charItems.setAttribute("class", "grid-item")
     div.appendChild(charItems)
     charItems.textContent = `Name: ${n}, Race: ${r}, Class: ${c}, Gender: ${g}`;
@@ -75,6 +75,7 @@ function initialize() {
     const charactersDiv = document.querySelector('div#exampleCharacters')
     const btn = document.createElement('button');
     btn.textContent = 'Hide Stuff'
+    // see if you can do a lambda function to pass in the button function instead of having its own function on line 89
     btn.addEventListener('click', toggle(btn));
     charactersDiv.appendChild(btn);
     for (char of characters) {
