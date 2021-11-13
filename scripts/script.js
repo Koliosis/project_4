@@ -53,7 +53,7 @@ const characters = [
 
 
 
-function createItems(n, r, c, g) {
+function createTable(n, r, c, g) {
     // change this whole thing to use tables.
     // create section
     const section = document.createElement("section");
@@ -61,46 +61,60 @@ function createItems(n, r, c, g) {
     const div = document.createElement("div");
     section.appendChild(div);
     // create table to house characters
-    const charItems = document.createElement('table');
-    charItems.setAttribute("class", "grid-item")
-    div.appendChild(charItems)
-    charItems.textContent = `Name: ${n}, Race: ${r}, Class: ${c}, Gender: ${g}`;
+    const charTable = document.querySelector('table#characterTable');
+    const charRow = document.createElement('tr');
+    const charName = document.createElement('td')
+    const charRace = document.createElement('td')
+    const charClass = document.createElement('td')
+    const charGender = document.createElement('td')
+    for (char in characters) {
+        charName.textContent = n;
+        charRace.textContent = r;
+        charClass.textContent = c;
+        charGender.textContent = g;
+    }
+    div.appendChild(charTable);
+    charTable.appendChild(charRow);
+    charRow.appendChild(charName);
+    charRow.appendChild(charRace);
+    charRow.appendChild(charClass);
+    charRow.appendChild(charGender);
     return section;
 }
 
 
-// create a button
+// initialize everything
 function initialize() {
     console.log("hello");
     const charactersDiv = document.querySelector('div#exampleCharacters')
     const btn = document.createElement('button');
     btn.textContent = 'Hide Stuff'
     // see if you can do a lambda function to pass in the button function instead of having its own function on line 89
-    btn.addEventListener('click', toggle(btn));
+    // btn.addEventListener('click', toggle(btn));
     charactersDiv.appendChild(btn);
     for (char of characters) {
-        const section = createItems(char.name, char.race, char.class, char.gender);
+        const section = createTable(char.name, char.race, char.class, char.gender);
         charactersDiv.appendChild(section);
     }
 }
 
 
 
-let visable = true;
-let handle = 0;
-function toggle(b) {
-    visable = !visable;
-    if (visable) {
-        b.textContent = "Hide answer";
-        const charactersDiv = document.querySelector('div#exampleCharacters')  
-        aDiv.setAttribute('class', 'shown');
-        handle = setTimeout(toggle, 5000);
-    } else {
-        b.textContent = "Show answer"
-        aDiv.setAttribute('class', 'hidden')
-        clearTimeout(handle);
-    }
-}
+// let visable = true;
+// let handle = 0;
+// function toggle(b) {
+//     visable = !visable;
+//     if (visable) {
+//         b.textContent = "Hide answer";
+//         const charactersDiv = document.querySelector('div#exampleCharacters')  
+//         aDiv.setAttribute('class', 'shown');
+//         handle = setTimeout(toggle, 5000);
+//     } else {
+//         b.textContent = "Show answer"
+//         aDiv.setAttribute('class', 'hidden')
+//         clearTimeout(handle);
+//     }
+// }
 
 
 
