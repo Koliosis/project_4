@@ -63,16 +63,16 @@ function modelUpdateCharacter(id, name, race, rpgClass, gender, strength, dexter
         return undefined;
     }
 
-    student.name = name;
-    student.race = race;
-    student.rpgClass = rpgClass;
-    student.gender = gender;
-    student.strength = strength;
-    student.dexterity = dexterity;
-    student.constitution = constitution;
-    student.intelligence = intelligence;
-    student.wisdom = wisdom;
-    student.charisma = charisma;
+    character.name = name;
+    character.race = race;
+    character.rpgClass = rpgClass;
+    character.gender = gender;
+    character.strength = strength;
+    character.dexterity = dexterity;
+    character.constitution = constitution;
+    character.intelligence = intelligence;
+    character.wisdom = wisdom;
+    character.charisma = charisma;
 
     return character;
 }

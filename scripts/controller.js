@@ -85,12 +85,7 @@ function onEditBtnClicked(id) {
         }
     }
 
-    parseInt(form.strengthEdit.value) = character.strength;
-    parseInt(form.dexterityEdit.value) = character.dexterity;
-    parseInt(form.contstitutionEdit.value) = character.constitution;
-    parseInt(form.intelligenceEdit.value) = character.intelligence;
-    parseInt(form.wisdomEdit.value) = character.wisdom;
-    parseInt(form.charismaEdit.value) = character.charisma;
+    
 
 
     // form.strengthEdit.value = character.strength;
@@ -118,7 +113,7 @@ function onCreateBtnClicked() {
         form.classSelect.value,
         form.gender.value,
         //might need to change these to parseInt() later
-        parseInt(form.strengthEdit.value),
+        form.strengthEdit.value,
         parseInt(form.dexterityEdit.value),
         parseInt(form.constitutionEdit.value),
         parseInt(form.intelligenceEdit.value),
@@ -146,12 +141,12 @@ function onUpdateBtnClicked(id) {
         form.gender.value,
         //might need to change these to parseInt() later
         parseInt(form.strengthEdit),
-        parseInt(form.dexterityEdit.value),
-        parseInt(form.constitutionEdit.value),
-        parseInt(form.intelligenceEdit.value),
-        parseInt(form.wisdomEdit.value),
-        parseInt(form.charismaEdit.value),
-        parseInt(form.id.value),
+        parseInt(form.dexterityEdit),
+        parseInt(form.constitutionEdit),
+        parseInt(form.intelligenceEdit),
+        parseInt(form.wisdomEdit),
+        parseInt(form.charismaEdit),
+        parseInt(form.id),
     );
 
     if (!character) {
@@ -178,6 +173,24 @@ function onRerollClicked() {
     document.getElementById("intelligenceEdit").innerText = diceStats();
     document.getElementById("wisdomEdit").innerText = diceStats();
     document.getElementById("charismaEdit").innerText = diceStats();
+}
+
+
+function onDeleteBtnClicked(id) {
+    var character = modelGetCharacter(id);
+    if (!character) {
+        alert("Unable to find character ID = " + id);
+        return;
+    }
+
+    if (!confirm("Are you sure you want to delete " + character.name)) {
+        return;
+    }
+
+    modelDeleteCharacter(id);
+
+    var tr = document.getElementById("row" + id);
+    tr.remove();
 }
 
 
